@@ -1,0 +1,45 @@
+syntax = "proto3";
+import "google/protobuf/empty.proto";
+option csharp_namespace = "TestGrpContract";
+
+package Greet;
+
+// The greeting service definition.
+service Greeter {
+  // Sends a greeting
+  rpc SayHello (HelloRequest) returns (HelloReply);
+  rpc GetNooberStream (google.protobuf.Empty) returns (stream HelloReply);
+  rpc Echo (stream EchoMessage) returns (stream EchoMessage);
+  rpc FeedMe (stream FoodMessage) returns (FoodResponse);
+  rpc GetRandomNumberStream (google.protobuf.Empty) returns (stream RandomNumber);
+
+}
+
+// The request message containing the user's name.
+message HelloRequest {
+  string name = 1;
+}
+
+// The response message containing the greetings.
+message HelloReply {
+  string message = 1;
+}
+
+// The response message containing the Echo.
+message EchoMessage {
+  string message = 1;
+}
+
+message FoodMessage {
+  int32 value = 1;
+}
+
+message FoodResponse {
+  string message = 1;
+  int32 total = 2;
+  repeated int32 allValues = 3;
+}
+
+message RandomNumber {
+  int32 number = 1;
+}
